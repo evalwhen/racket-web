@@ -51,5 +51,7 @@
    #:port 8000))
 
 (with-handlers ([exn:break? (lambda (e)
+                              (displayln "will stop server, cuz event: ")
+                              (displayln e)
                               (stop))])
   (sync/enable-break never-evt))
