@@ -45,7 +45,7 @@
 (define stop
   (serve
    #:dispatch (sequencer:make
-               (log:make)
+               (log:make #:format 'apache-default)
                (filter:make #rx"^/static/" static-dispatcher)
                (dispatch/servlet app)
                (dispatch/servlet not-found))
