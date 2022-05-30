@@ -7,6 +7,7 @@
          (prefix-in files: web-server/dispatchers/dispatch-files)
          (prefix-in filter: web-server/dispatchers/dispatch-filter)
          (prefix-in sequencer: web-server/dispatchers/dispatch-sequencer)
+         (prefix-in log: web-server/dispatchers/dispatch-log)
          web-server/dispatchers/filesystem-map
          web-server/http
          web-server/servlet-dispatch
@@ -44,6 +45,7 @@
 (define stop
   (serve
    #:dispatch (sequencer:make
+               (log:make)
                (filter:make #rx"^/static/" static-dispatcher)
                (dispatch/servlet app)
                (dispatch/servlet not-found))
